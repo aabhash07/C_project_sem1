@@ -122,21 +122,20 @@ void login (void)
         gets(username);
         printf("\nPLEASE ENTER PASSWORD: ");
         gets(password);
-        while(fread(&l,sizeof(struct login),1,log))
+        fread(&l,sizeof(struct login),1,log);
+        printf("PROCESSING...\n");
+        if(strcmp(username,l.username)==0 && strcmp(password,l.password)==0)
         {
-            if(strcmp(username,l.username)==0 && strcmp(password,l.password)==0)
-            {
-                printf("\nSuccessful Login\n");
-                int main();
-            }
-            else
-            {
-                printf("\nIncorrect Login Details\nPlease enter the correct credentials\n");
-                printf("\nPlease TRY AGAIN or REGISTER FIRST if you haven't yet\n");
-                loginsystem();
-            }
+            printf("\nSuccessful Login\n");
+            int main();
         }
-        fclose(log);
+        else
+        {
+            printf("\nIncorrect Login Details\nPlease enter the correct credentials\n");
+            printf("\nPlease TRY AGAIN or REGISTER FIRST if you haven't yet\n");
+            loginsystem();
+        }      
+	fclose(log);
     }
     return;
 }
